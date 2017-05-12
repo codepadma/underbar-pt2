@@ -19,14 +19,23 @@ const { each } = require('./underbar-pt1');
 //     bla: "even more stuff"
 //   }); // obj1 now contains key1, key2, key3 and bla
 const extend = function(obj) {
-  // Your code here
-  // Hint: remember that Array.from can convert an array-like object to handy-dandy array for you.
+  each(Array.from(arguments).slice(1), object => {
+    each(object, (value, key) => {
+      obj[key] = value;
+    });
+  });
+  return obj;
 };
 
 // Like extend, but doesn't ever overwrite a key that already
 // exists in obj
 const defaults = function(obj) {
-  // Your code here
+    each(Array.from(arguments).slice(1), object => {
+    each(object, (value, key) => {
+      obj[key] === undefined && (obj[key] = value);
+    });
+  });
+  return obj;
 };
 
 
