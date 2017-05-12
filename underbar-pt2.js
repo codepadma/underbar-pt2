@@ -50,7 +50,15 @@ const defaults = function(obj) {
 // Return a function that can be called at most one time. Subsequent calls
 // should return the previously returned value.
 const once = function(func) {
-  // Hint: you're going to need to return another function that you create inside this function.
+    let isCalled = false;
+  let result;
+  return function() {
+    if (!isCalled) {
+      result = func.apply(this, arguments);
+      isCalled = true;
+    }
+    return result;
+  };
 };
 
 // Memorize an expensive function's results by storing them. You may assume
@@ -62,8 +70,7 @@ const once = function(func) {
 // already computed the result for the given argument and return that value
 // instead if possible.
 const memoize = function(func) {
-  // Hint: look up Function.apply
-  // Your code here
+  
 };
 
 // Delays a function for the given number of milliseconds, and then calls
